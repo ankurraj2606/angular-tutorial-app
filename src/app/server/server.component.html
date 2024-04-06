@@ -1,0 +1,24 @@
+<h1>This is the server component</h1>
+
+<button (click)="addServer()">Add server</button>
+
+@if(isServer) {
+<p>Server is there</p>
+}
+
+<p>server component is {{ getServerStatus() }}</p>
+<p>
+  The {{ "server" }} id is {{ serverId }} and the server status is
+  {{ serverStatus }}
+</p>
+
+<!-- 
+
+    ?string interpolation - {{id}}
+
+    Anything that can be resolved to a string can be put in string interpolation. You can use ternary operators here, but 
+    we can't use conditions, like if, if-else.
+
+    we can call a method in the string interpolation, like we have called getServerStatus()
+
+-->

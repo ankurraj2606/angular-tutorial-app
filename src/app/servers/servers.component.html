@@ -1,0 +1,98 @@
+<label>Server Name</label>
+
+<!-- <input type="text" class="form-control" (input)="onUpdateServerName($event)" /> -->
+
+<input type="text" class="form-control" [(ngModel)]="serverName" />
+
+<!-- <p>{{ serverName }}</p> -->
+
+<button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()"
+>
+  Add Server
+</button>
+
+<p [innerText]="allowNewServer"></p>
+
+<!-- <p>{{ serverCreationStatus }}</p> -->
+
+<!-- angular if directive -->
+
+<p *ngIf="serverCreated">
+  Server has been created and the server name is {{ serverName }}
+</p>
+
+<!-- angular if-else directive -->
+
+<div class="mt-4">
+  <label>Add Text</label>
+  <input type="text" class="form-control m-4" [(ngModel)]="inputText" />
+
+  <button class="btn-primary" [disabled]="!inputText" (click)="addText()">
+    Add Text
+  </button>
+
+  <p *ngIf="textEntered; else noTextAdded">{{ inputText }}</p>
+
+  <ng-template #noTextAdded>
+    <p>No text Added!</p>
+  </ng-template>
+</div>
+
+<app-server></app-server>
+<app-server></app-server>
+
+<!--
+    ?Property Binding -> [disabled] = "isTrue"
+
+    Here, the attribute inside the square braces is not a normal html attribute, this is a syntax recognized by the Angular, and
+    this is called property binding. Inside the quotes, we don't give {{}} , like we used to give in string interpolation.
+
+    We need to write typescript code inside the "", and again, no curly braces.
+-->
+
+<!--
+
+    ?Event Binding -> (click) = "onButtonClick()"
+
+    Here, the events, like click, keyPress, keyDown will be written inside the small braces, and the code or method that is to be executed
+    would be written inside the quotes.
+
+    !Event in Event Binding - (input)="onUpdateServerName($event)"
+    $ is the reserved keyword used with event to pass the event to the method we are calling on the event (click, keypress), like shown above.
+
+
+-->
+
+<!--
+
+    ?Two way data binding - [(ngModule)] = "serverName"
+
+    To be able to use ngModel, the FormsModule (from Angular forms (@angular/forms) needs to be added to your imports array in the AppModule)
+
+-->
+
+<!--
+
+  ?Directives : Directives are instructions to the DOM.
+  
+  *<p *ngIf = "serverCreated"> {{serverName}} </p>
+
+  Here, if the *ngIf condition, serverCreated varible would be true, then only, this paragraph will be added to the DOM. If the condition would be
+  false, then the p will be removed from the DOM if it is already there.
+
+  It is not the case that, p element will be visually hidden on the DOM. It would not be present in the DOM.
+
+  * before the ngIf tells that ngIf is a structural directive.
+
+  ?Angular if-else : 
+
+  <p *ngIf="textEntered; else noTextAdded">{{ inputText }}</p>
+
+  <ng-template #noTextAdded>
+    <p>No text Added!</p>
+  </ng-template>
+
+-->
